@@ -1,0 +1,20 @@
+Training Started!
+================
+
+Command: python train_improved.py --data_dir Data --epochs 50 --batch_size 64 --use_improved_model --enhanced_preprocessing --auto_split --val_split 0.15
+
+Parameters:
+- Dataset: Data folder
+- Epochs: 50
+- Batch Size: 64
+- Model: ImprovedKannadaCNN
+- Enhanced Preprocessing: Enabled
+- Auto Split: Enabled (15% validation)
+
+To monitor training:
+1. Check Python processes: Get-Process python
+2. Check checkpoint file: Get-Item checkpoints\best_improved.pt
+3. Run status checker: python check_status.py
+
+Training will save the best model to: checkpoints/best_improved.pt
+

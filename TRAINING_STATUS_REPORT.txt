@@ -1,0 +1,68 @@
+======================================================================
+                    TRAINING STATUS REPORT
+======================================================================
+
+To check training status, run one of these commands:
+
+1. Quick Status Check:
+   python check_status.py
+
+2. Detailed Status:
+   python show_training_status.py
+
+3. Check Python Processes:
+   Get-Process python
+
+4. Check Checkpoint File:
+   Get-Item checkpoints\best_improved.pt | Format-List *
+
+======================================================================
+CHECKPOINT FILE INFORMATION
+======================================================================
+
+Location: checkpoints\best_improved.pt
+
+If the file exists:
+- Check the "LastWriteTime" to see when it was last updated
+- If updated recently (< 5 minutes), training is likely active
+- If updated 5-60 minutes ago, training may have just completed
+- If updated > 1 hour ago, training completed earlier
+
+======================================================================
+MODEL INFORMATION
+======================================================================
+
+To see model details, run:
+python -c "import torch; ckpt=torch.load('checkpoints/best_improved.pt', map_location='cpu'); print('Classes:', ckpt.get('num_classes')); print('Epoch:', ckpt.get('epoch')); print('Val Acc:', ckpt.get('val_acc'))"
+
+======================================================================
+TRAINING PARAMETERS
+======================================================================
+
+Dataset: Data folder
+Epochs: 50
+Batch Size: 64
+Model: ImprovedKannadaCNN
+Enhanced Preprocessing: Enabled
+Auto Split: Enabled (15% validation)
+
+======================================================================
+WHAT TO LOOK FOR
+======================================================================
+
+ACTIVE TRAINING:
+- Python processes running with high CPU/Memory usage
+- Checkpoint file being updated frequently
+- Checkpoint file modified within last 5 minutes
+
+COMPLETED TRAINING:
+- No Python training processes running
+- Checkpoint file exists but not updating
+- Checkpoint file older than 1 hour
+
+NOT STARTED:
+- No checkpoint file exists
+- No Python processes related to training
+
+======================================================================
+
